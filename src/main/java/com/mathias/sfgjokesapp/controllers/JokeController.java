@@ -8,18 +8,18 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
-public class JokesController {
-    Logger logger = LoggerFactory.getLogger(JokesController.class);
+public class JokeController {
+    Logger logger = LoggerFactory.getLogger(JokeController.class);
     private final JokeService jokeService;
 
-    public JokesController(JokeService jokeService) {
+    public JokeController(JokeService jokeService) {
         this.jokeService = jokeService;
     }
 
     @RequestMapping("/")
     public String getJoke(Model model) {
         String joke = jokeService.getJoke();
-        logger.info("Got joke {}", joke);
+        logger.info("Serving joke \"{}\"", joke);
         model.addAttribute("joke", jokeService.getJoke());
         return "jokes/joke";
     }
